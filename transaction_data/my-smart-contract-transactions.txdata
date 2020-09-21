@@ -1,0 +1,44 @@
+[
+    {
+        "transactionName": "mySmartContractExists",
+        "transactionLabel": "A test mySmartContractExists transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "createMySmartContract",
+        "transactionLabel": "A test createMySmartContract transaction",
+        "arguments": [
+            "001",
+            "some value"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "readMySmartContract",
+        "transactionLabel": "A test readMySmartContract transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "updateMySmartContract",
+        "transactionLabel": "A test updateMySmartContract transaction",
+        "arguments": [
+            "001",
+            "some other value"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "deleteMySmartContract",
+        "transactionLabel": "A test deleteMySmartContract transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    }
+]
