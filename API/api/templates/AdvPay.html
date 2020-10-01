@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="Content-Language" content="en" />
+	<title>Advance Payment</title>
+	<link rel="shortcut icon" href="https://lh3.googleusercontent.com/MpnmfR3zYPTojA03QbhGgwIHucmH5s4G2vbIlADYhODL488MQt_BuVztv9LYmJbhwkScYN0DIXuh4d10YMsLbWXT">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+	<link rel="stylesheet" href="https://cdn.turbo360-dev.com/admin/assets/scaffold/css/style.min.css" />
+</head>
+
+<body>
+    <style type="text/css">
+        .container {
+    padding: 53px 9px;
+    width: 50%;
+    background: black;
+    margin-top: 7%;
+}
+body{
+    background: url(https://i.pinimg.com/originals/33/98/70/339870b0b801befefa2d65c6ecd7e6c7.jpg);
+    background-position: bottom right;
+}
+input {
+    width: 90%;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid;
+    padding: 8px;
+    font-size: medium;
+}
+
+button {
+    padding: 2px 20px;
+    font-size: 22px;
+    background-color: #0909b3;
+    border: none;
+    border-radius: 8px;
+    color: white;
+}
+
+h3 {
+    color: white;
+    font-size: 35px;
+    text-transform: uppercase;
+    border-bottom: 4px solid;
+}
+p {
+    
+    color: whitesmoke;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+    </style>
+<section>
+    <div class="container">
+        <h3 align="center">Pay advance</h3>
+     <div align="center">
+            <input type="text" id="assetid" class="" placeholder="Asset no which you want to buy"><br>
+            <button onclick="sendJSON()">Submit</button><br>
+            {% if post['error'] != "" %}
+    <br> <p>{{ post['error'] }}</p>
+   {% endif %}
+    </div>
+
+    </div>
+</section>
+	<script>
+		function sendJSON(){ 
+            let vurl = window.location.href;
+            let username = vurl.split('/');
+            username = username[4];
+            let usertype = vurl.split('/');
+            usertype = usertype[3];
+            let assetid = document.querySelector('#assetid'); 
+            // Creating a XHR object 
+            let xhr = new XMLHttpRequest(); 
+            let url = "/"+ usertype +"/api/AdvPayment/"; 
+        
+            // open a connection 
+            xhr.open("POST", url, true); 
+  
+            // Set the request header i.e. which type of content you are sending 
+            xhr.setRequestHeader("Content-Type", "application/json"); 
+            xhr.onreadystatechange = function () { 
+                console.log(xhr.status);
+                if (xhr.readyState === 4 && xhr.status === 200) { 
+ 
+                    window.location='/'+ usertype +'/' +username +'/Bsuccess'; 
+                   
+  
+                }else{
+                    window.location='/'+ usertype +'/' +username +'/Berror';
+
+                }
+            }; 
+  
+            // Converting JSON data to string 
+            var data = JSON.stringify({ "assetid": assetid.value,"username":username}); 
+  
+            // Sending data with the request 
+            xhr.send(data); 
+        } 
+
+
+
+
+
+	</script> 
+	<script type="text/javascript" src="https://cdn.turbo360-dev.com/admin/assets/scaffold/js/vendor.min.js"></script>
+	<script type="text/javascript" src="https://cdn.turbo360-dev.com/admin/common.js"></script>
+	<script type="text/javascript" src="https://cdn.turbo360-dev.com/admin/scaffold.js"></script>
+</body>
+</html>

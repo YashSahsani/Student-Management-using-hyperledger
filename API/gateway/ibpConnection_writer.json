@@ -1,0 +1,116 @@
+{
+    "name": "mediachannel",
+    "description": "Network on IBP v2",
+    "version": "1.0.0",
+    "client": {
+        "organization": "Writermsp"
+    },
+    "organizations": {
+        "Actormsp": {
+            "mspid": "Actormsp",
+            "peers": [
+                "n169bd2-actorpeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7051"
+            ]
+        },
+        "Countrymsp": {
+            "mspid": "Countrymsp",
+            "peers": [
+                "n169bd2-countrypeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7051"
+            ]
+        },
+        "Producermsp": {
+            "mspid": "Producermsp",
+            "peers": [
+                "n169bd2-producerpeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7051"
+            ]
+        },
+        "Writermsp": {
+            "mspid": "Writermsp",
+            "peers": [
+                "n169bd2-writerpeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7051"
+            ],
+            "certificateAuthorities": [
+                "n169bd2-writerca.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7054"
+            ]
+        }
+    },
+    "orderers": {
+        "n169bd2-raftorderernode1.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7050": {
+            "url": "grpcs://n169bd2-raftorderernode1.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7050",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIIB/jCCAaSgAwIBAgIUGL4y/yYR9IjUnCO3oBpOmEkcjZQwCgYIKoZIzj0EAwIw\nXTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMQ4wDAYDVQQDEwV0bHNjYTAe\nFw0yMDA0MjkwNjI5MDBaFw0zNTA0MjYwNjI5MDBaMF0xCzAJBgNVBAYTAlVTMRcw\nFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzAN\nBgNVBAsTBkZhYnJpYzEOMAwGA1UEAxMFdGxzY2EwWTATBgcqhkjOPQIBBggqhkjO\nPQMBBwNCAAS5lFJHjAD5gu6c004vJcO+zLP+BBSx8Ga/R+Rym1cjEGeZvaU+gQ7s\nM9EyrlgP6sDfM7IaZT5q+T747gct9YcWo0IwQDAOBgNVHQ8BAf8EBAMCAQYwDwYD\nVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUBDVOPiWb4a/n/J8NWpAUTP7HGvkwCgYI\nKoZIzj0EAwIDSAAwRQIhAJVTj134ZhtbrVSg0o8VXXkUBmLxRRmzN7znoYVK2p5j\nAiBNH/lSODBlM6sCMCig+rHwcU/Y2+BcFyfyNlnKGL6sWQ==\n-----END CERTIFICATE-----\n"
+            }
+        },
+        "n169bd2-raftorderernode2.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7050": {
+            "url": "grpcs://n169bd2-raftorderernode2.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7050",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIIB/jCCAaSgAwIBAgIUGL4y/yYR9IjUnCO3oBpOmEkcjZQwCgYIKoZIzj0EAwIw\nXTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMQ4wDAYDVQQDEwV0bHNjYTAe\nFw0yMDA0MjkwNjI5MDBaFw0zNTA0MjYwNjI5MDBaMF0xCzAJBgNVBAYTAlVTMRcw\nFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzAN\nBgNVBAsTBkZhYnJpYzEOMAwGA1UEAxMFdGxzY2EwWTATBgcqhkjOPQIBBggqhkjO\nPQMBBwNCAAS5lFJHjAD5gu6c004vJcO+zLP+BBSx8Ga/R+Rym1cjEGeZvaU+gQ7s\nM9EyrlgP6sDfM7IaZT5q+T747gct9YcWo0IwQDAOBgNVHQ8BAf8EBAMCAQYwDwYD\nVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUBDVOPiWb4a/n/J8NWpAUTP7HGvkwCgYI\nKoZIzj0EAwIDSAAwRQIhAJVTj134ZhtbrVSg0o8VXXkUBmLxRRmzN7znoYVK2p5j\nAiBNH/lSODBlM6sCMCig+rHwcU/Y2+BcFyfyNlnKGL6sWQ==\n-----END CERTIFICATE-----\n"
+            }
+        },
+        "n169bd2-raftorderernode3.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7050": {
+            "url": "grpcs://n169bd2-raftorderernode3.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7050",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIIB/jCCAaSgAwIBAgIUGL4y/yYR9IjUnCO3oBpOmEkcjZQwCgYIKoZIzj0EAwIw\nXTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMQ4wDAYDVQQDEwV0bHNjYTAe\nFw0yMDA0MjkwNjI5MDBaFw0zNTA0MjYwNjI5MDBaMF0xCzAJBgNVBAYTAlVTMRcw\nFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzAN\nBgNVBAsTBkZhYnJpYzEOMAwGA1UEAxMFdGxzY2EwWTATBgcqhkjOPQIBBggqhkjO\nPQMBBwNCAAS5lFJHjAD5gu6c004vJcO+zLP+BBSx8Ga/R+Rym1cjEGeZvaU+gQ7s\nM9EyrlgP6sDfM7IaZT5q+T747gct9YcWo0IwQDAOBgNVHQ8BAf8EBAMCAQYwDwYD\nVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUBDVOPiWb4a/n/J8NWpAUTP7HGvkwCgYI\nKoZIzj0EAwIDSAAwRQIhAJVTj134ZhtbrVSg0o8VXXkUBmLxRRmzN7znoYVK2p5j\nAiBNH/lSODBlM6sCMCig+rHwcU/Y2+BcFyfyNlnKGL6sWQ==\n-----END CERTIFICATE-----\n"
+            }
+        },
+        "n169bd2-raftorderernode4.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7050": {
+            "url": "grpcs://n169bd2-raftorderernode4.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7050",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIIB/jCCAaSgAwIBAgIUGL4y/yYR9IjUnCO3oBpOmEkcjZQwCgYIKoZIzj0EAwIw\nXTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMQ4wDAYDVQQDEwV0bHNjYTAe\nFw0yMDA0MjkwNjI5MDBaFw0zNTA0MjYwNjI5MDBaMF0xCzAJBgNVBAYTAlVTMRcw\nFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzAN\nBgNVBAsTBkZhYnJpYzEOMAwGA1UEAxMFdGxzY2EwWTATBgcqhkjOPQIBBggqhkjO\nPQMBBwNCAAS5lFJHjAD5gu6c004vJcO+zLP+BBSx8Ga/R+Rym1cjEGeZvaU+gQ7s\nM9EyrlgP6sDfM7IaZT5q+T747gct9YcWo0IwQDAOBgNVHQ8BAf8EBAMCAQYwDwYD\nVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUBDVOPiWb4a/n/J8NWpAUTP7HGvkwCgYI\nKoZIzj0EAwIDSAAwRQIhAJVTj134ZhtbrVSg0o8VXXkUBmLxRRmzN7znoYVK2p5j\nAiBNH/lSODBlM6sCMCig+rHwcU/Y2+BcFyfyNlnKGL6sWQ==\n-----END CERTIFICATE-----\n"
+            }
+        },
+        "n169bd2-raftorderernode5.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7050": {
+            "url": "grpcs://n169bd2-raftorderernode5.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7050",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIIB/jCCAaSgAwIBAgIUGL4y/yYR9IjUnCO3oBpOmEkcjZQwCgYIKoZIzj0EAwIw\nXTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMQ4wDAYDVQQDEwV0bHNjYTAe\nFw0yMDA0MjkwNjI5MDBaFw0zNTA0MjYwNjI5MDBaMF0xCzAJBgNVBAYTAlVTMRcw\nFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzAN\nBgNVBAsTBkZhYnJpYzEOMAwGA1UEAxMFdGxzY2EwWTATBgcqhkjOPQIBBggqhkjO\nPQMBBwNCAAS5lFJHjAD5gu6c004vJcO+zLP+BBSx8Ga/R+Rym1cjEGeZvaU+gQ7s\nM9EyrlgP6sDfM7IaZT5q+T747gct9YcWo0IwQDAOBgNVHQ8BAf8EBAMCAQYwDwYD\nVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUBDVOPiWb4a/n/J8NWpAUTP7HGvkwCgYI\nKoZIzj0EAwIDSAAwRQIhAJVTj134ZhtbrVSg0o8VXXkUBmLxRRmzN7znoYVK2p5j\nAiBNH/lSODBlM6sCMCig+rHwcU/Y2+BcFyfyNlnKGL6sWQ==\n-----END CERTIFICATE-----\n"
+            }
+        }
+    },
+    "peers": {
+        "n169bd2-actorpeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7051": {
+            "url": "grpcs://n169bd2-actorpeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIIB/TCCAaSgAwIBAgIUIu8RgDN87mJrWQQ/M9p7r+AoiZYwCgYIKoZIzj0EAwIw\nXTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMQ4wDAYDVQQDEwV0bHNjYTAe\nFw0yMDA0MjkwNjI3MDBaFw0zNTA0MjYwNjI3MDBaMF0xCzAJBgNVBAYTAlVTMRcw\nFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzAN\nBgNVBAsTBkZhYnJpYzEOMAwGA1UEAxMFdGxzY2EwWTATBgcqhkjOPQIBBggqhkjO\nPQMBBwNCAAQg1e48K01EL4MTk9+uichgVDzwYRLldjKCC5kmvZrt34H35jLZgD5x\nBKYid9KLLhvMs9mDWgN2HAqHuLkhZe5jo0IwQDAOBgNVHQ8BAf8EBAMCAQYwDwYD\nVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQURXyTDm4FrjzbpdmJVMzFpA/hP1AwCgYI\nKoZIzj0EAwIDRwAwRAIgHXkr8WiWz1fn+gueDlL/Gf+vpAxVIF9OexlHw5HztIAC\nIDfZ3Q/34l1bO1KKBxQwzIqDU6rI0iIh6o99M+mVFC3l\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "n169bd2-actorpeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud"
+            }
+        },
+        "n169bd2-countrypeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7051": {
+            "url": "grpcs://n169bd2-countrypeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIIB/TCCAaSgAwIBAgIUVEoTnTIW9IVD3s4FIQI2G0BRr7cwCgYIKoZIzj0EAwIw\nXTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMQ4wDAYDVQQDEwV0bHNjYTAe\nFw0yMDA0MjkwNjI4MDBaFw0zNTA0MjYwNjI4MDBaMF0xCzAJBgNVBAYTAlVTMRcw\nFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzAN\nBgNVBAsTBkZhYnJpYzEOMAwGA1UEAxMFdGxzY2EwWTATBgcqhkjOPQIBBggqhkjO\nPQMBBwNCAAS8pXH92AV+OdA0jymE1WN9bmHf2o38LUrTCE99EWI1rfhT2nwUPIZO\nrcGZvDfbHiAWjKjrfSBrR+kvRwS2GQheo0IwQDAOBgNVHQ8BAf8EBAMCAQYwDwYD\nVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUOesMyS6jeRxxjN3fiXsNPK3791UwCgYI\nKoZIzj0EAwIDRwAwRAIgLt1muxFzJc6rysn3c0QF619EFsS6/PQz4dm9UKUcoj4C\nIH48rSBrOPe5jWs41d2Fdt+JQegniUVSLEgT3VuTrwqq\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "n169bd2-countrypeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud"
+            }
+        },
+        "n169bd2-producerpeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7051": {
+            "url": "grpcs://n169bd2-producerpeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIIB/jCCAaSgAwIBAgIUcWu/wZiNWqmjU7Ef+YS8KTfwROEwCgYIKoZIzj0EAwIw\nXTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMQ4wDAYDVQQDEwV0bHNjYTAe\nFw0yMDA0MjkwNjI3MDBaFw0zNTA0MjYwNjI3MDBaMF0xCzAJBgNVBAYTAlVTMRcw\nFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzAN\nBgNVBAsTBkZhYnJpYzEOMAwGA1UEAxMFdGxzY2EwWTATBgcqhkjOPQIBBggqhkjO\nPQMBBwNCAAQf1jnRYlll+cIZL+GEuIe/HJOInks+xFfBKsFi4fg7jwWOZJHkNMf4\nNsocFnGIli9YUWF23cVxkyVfMwMAxBx2o0IwQDAOBgNVHQ8BAf8EBAMCAQYwDwYD\nVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUS1DNwy3RfEkgcYki1FzUcg6lgQYwCgYI\nKoZIzj0EAwIDSAAwRQIhAML/dSpTCmNhhqWOw6Zb2hVRiFq8/ezagFNGLQCLJ0iO\nAiBi7f+YcxZqYaNG/ztjMvUTugvh6y9BbyqYzEvc/iSGVQ==\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "n169bd2-producerpeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud"
+            }
+        },
+        "n169bd2-writerpeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7051": {
+            "url": "grpcs://n169bd2-writerpeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIIB/TCCAaSgAwIBAgIUayveYGe8ggwWAItcGYMveqGMxyIwCgYIKoZIzj0EAwIw\nXTELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMQ4wDAYDVQQDEwV0bHNjYTAe\nFw0yMDA0MjkwNjI4MDBaFw0zNTA0MjYwNjI4MDBaMF0xCzAJBgNVBAYTAlVTMRcw\nFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEUMBIGA1UEChMLSHlwZXJsZWRnZXIxDzAN\nBgNVBAsTBkZhYnJpYzEOMAwGA1UEAxMFdGxzY2EwWTATBgcqhkjOPQIBBggqhkjO\nPQMBBwNCAARblDqayOn4TJbPBrxlsa5oynkJMalnBNENzeZMSaVvHfWFr4G3Ox+p\nlSTE8WNVgen4jnPkM5px0K+CAItNIS6eo0IwQDAOBgNVHQ8BAf8EBAMCAQYwDwYD\nVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUxAjGP2SxcTjtszKN8NhoU0/e5TcwCgYI\nKoZIzj0EAwIDRwAwRAIgPkhQVpL+47N8LF+6BUbBsyW5uXesjTZi3d0E23nlx6sC\nIEKpGTb9XAVCJ6agWBmYfkN1vQOAW8i/f+PfHKcMKY9n\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "n169bd2-writerpeer.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "n169bd2-writerca.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7054": {
+            "url": "https://n169bd2-writerca.mediacluster-794784-20cc407ad8c4128f24ed6b87375089cf-0000.us-south.containers.appdomain.cloud:7054",
+            "caName": "ca",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIIDJDCCAsqgAwIBAgIRAN3AsubIyCGnBr5WjG3R8G8wCgYIKoZIzj0EAwIwgdMx\nCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEPMA0GA1UEBxMG\nRHVyaGFtMQwwCgYDVQQKEwNJQk0xEzARBgNVBAsTCkJsb2NrY2hhaW4xdzB1BgNV\nBAMTbm4xNjliZDItd3JpdGVyY2EubWVkaWFjbHVzdGVyLTc5NDc4NC0yMGNjNDA3\nYWQ4YzQxMjhmMjRlZDZiODczNzUwODljZi0wMDAwLnVzLXNvdXRoLmNvbnRhaW5l\ncnMuYXBwZG9tYWluLmNsb3VkMB4XDTIwMDQyOTA2MzI0NVoXDTMwMDQyNzA2MzI0\nNVowgdMxCzAJBgNVBAYTAlVTMRcwFQYDVQQIEw5Ob3J0aCBDYXJvbGluYTEPMA0G\nA1UEBxMGRHVyaGFtMQwwCgYDVQQKEwNJQk0xEzARBgNVBAsTCkJsb2NrY2hhaW4x\ndzB1BgNVBAMTbm4xNjliZDItd3JpdGVyY2EubWVkaWFjbHVzdGVyLTc5NDc4NC0y\nMGNjNDA3YWQ4YzQxMjhmMjRlZDZiODczNzUwODljZi0wMDAwLnVzLXNvdXRoLmNv\nbnRhaW5lcnMuYXBwZG9tYWluLmNsb3VkMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcD\nQgAE3vd73JAF6QAP0s1mfOHZUiv0g/BKcWeMWaK5DJkbVsz8RTWZ/g4Nc3pDefsW\nbkq7BmMCMEbHcOB7A+isO9uyDKN9MHsweQYDVR0RBHIwcIJubjE2OWJkMi13cml0\nZXJjYS5tZWRpYWNsdXN0ZXItNzk0Nzg0LTIwY2M0MDdhZDhjNDEyOGYyNGVkNmI4\nNzM3NTA4OWNmLTAwMDAudXMtc291dGguY29udGFpbmVycy5hcHBkb21haW4uY2xv\ndWQwCgYIKoZIzj0EAwIDSAAwRQIhAP2R+JPfG/EqhvhDSeKxTaDiKIOOqN5NiUQT\nOpK7yjo4AiBXtzieurH9jqVxsM8Dn3Iio64iE7qV9eMM939dL/ZoUA==\n-----END CERTIFICATE-----\n"
+            }
+        }
+    }
+}
