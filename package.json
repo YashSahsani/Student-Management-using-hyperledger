@@ -1,6 +1,6 @@
 {
   "name": "Blockchain",
-  "version": "0.0.3",
+  "version": "0.0.14",
   "description": "My Smart Contract",
   "main": "index.js",
   "engines": {
@@ -10,6 +10,7 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
+    
     "test": "nyc mocha --recursive",
     "start": "fabric-chaincode-node start"
   },
