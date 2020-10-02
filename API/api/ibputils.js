@@ -12,10 +12,8 @@ var configdata;
 var network;
 var wallet;
 var bLocalHost;
-var ccp_pro;
-var ccp_act;
-var ccp_cou;
-var ccp_wri;
+var ccp_org1;
+var ccp_org2;
 var orgMSPID;
 
 var contract = null;
@@ -26,31 +24,26 @@ const utils = {};
 utils.connectGatewayFromConfig = async () => {
     console.log("*********************** connectGatewayFromConfig function: ********************* ");
 
-const configPath =  '/home/yash/Internship_projects/Media_IBM/new_gateway/config.json';
+const configPath =  '../gateway/config.json';
 const configJSON = fs.readFileSync(configPath, 'utf8');
 configdata = JSON.parse(configJSON);
 
 // connect to the connection file
-const PccpPath = '/home/yash/Internship_projects/Media_IBM/new_gateway/ibpConnection_producer.json';
+const PccpPath = '../gateway/ibpConnection_Org1.json';
 const PccpJSON = fs.readFileSync(PccpPath, 'utf8');
-ccp_pro = JSON.parse(PccpJSON);
-const AccpPath = '/home/yash/Internship_projects/Media_IBM/new_gateway/ibpConnection_actor.json';
+ccp_org1 = JSON.parse(PccpJSON);
+const AccpPath = '../gateway/ibpConnection_Org2.json';
 const AccpJSON = fs.readFileSync(AccpPath, 'utf8');
-ccp_act = JSON.parse(AccpJSON);
-const WccpPath = '/home/yash/Internship_projects/Media_IBM/new_gateway/ibpConnection_writer.json';
-const WccpJSON = fs.readFileSync(WccpPath, 'utf8');
-ccp_wri = JSON.parse(WccpJSON);
-const CccpPath = '/home/yash/Internship_projects/Media_IBM/new_gateway/ibpConnection_country.json';
-const CccpJSON = fs.readFileSync(CccpPath, 'utf8');
-ccp_cou = JSON.parse(CccpJSON);
+ccp_org2 = JSON.parse(AccpJSON);
+
 
 
 // A wallet stores a collection of identities for use
-const walletPath = path.join(process.cwd(), './newwallet');
+const walletPath = path.join(process.cwd(), './wallet');
 wallet = new FileSystemWallet(walletPath);
 console.log(`Wallet path: ${walletPath}`);
 
-const peerIdentity = 'ProducerAppAdmin';
+const peerIdentity = 'StudentAppAdmin';
 
     // A gateway defines the peers used to access Fabric networks
     gateway = new Gateway();
@@ -75,15 +68,15 @@ const peerIdentity = 'ProducerAppAdmin';
         console.log('user: ' + userid + ", pwd: ", pwd + ", usertype: ", usertype);
       //ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
           // Set up the MSP Id
-     orgMSPID = ccp_pro.client.organization;
+     orgMSPID = ccp_org1.client.organization;
      console.log('MSP ID: ' + orgMSPID);
     //use our config file, our peerIdentity, and our discovery options to connect to Fabric network.
-    await gateway.connect(ccp_pro, { wallet, identity: peerIdentity, discovery: configdata.gatewayDiscovery });
+    await gateway.connect(ccp_org1, { wallet, identity: peerIdentity, discovery: configdata.gatewayDiscovery });
     //connect to our channel that has been created on IBM yash/Internship_projects Platform
-    const network = await gateway.getNetwork('media-channel');
+    const network = await gateway.getNetwork('mychannel');
     console.log("here");
     //connect to our insurance contract that has been installed / instantiated on IBM yash/Internship_projects Platform
-     contract = await network.getContract('Mediaproject'); 
+     contract = await network.getContract('Blockchain'); 
   } catch (error) {
     console.error(`Failed to submit transaction: ${error}`);
   }finally{
@@ -101,21 +94,9 @@ utils.registerUser = async (userid, userpwd, usertype,countryname) => {
     console.log("\n userid: " + userid + ", pwd: " + userpwd + ", usertype: " + usertype)
     let id ;
     let ccp;
-    if(usertype == "Country"){
+    if(usertype == "admin"){
         id = configdata.CountryappAdmin;
         ccp = ccp_cou;
-    }
-    else if(usertype == "Producer"){
-        id = configdata.ProducerappAdmin;
-        ccp = ccp_pro;
-    }
-    else if(usertype == "Writer"){
-        id = configdata.WriterappAdmin;
-        ccp = ccp_wri;
-    }
-    else if(usertype == "Actor"){
-        id = configdata.ActorappAdminnew;
-        ccp = ccp_act;
     }
     else{
         return "Invalid Type";
@@ -210,21 +191,9 @@ utils.registerUser = async (userid, userpwd, usertype,countryname) => {
 utils.enrollUser = async (userid, userpwd, usertype,countryname) => {
     let ccp;
     let id;
-    if(usertype == "Facult"){
+    if(usertype == "admin"){
         id = configdata.CountryappAdmin;
         ccp = ccp_cou;
-    }
-    else if(usertype == "Producer"){
-        id = configdata.ProducerappAdmin;
-        ccp = ccp_pro;
-    }
-    else if(usertype == "Writer"){
-        id = configdata.WriterappAdmin;
-        ccp = ccp_wri;
-    }
-    else if(usertype == "Actor"){
-        id = configdata.ActorappAdmin;
-        ccp = ccp_act;
     }
     else{
         return "Invalid Type";
@@ -292,21 +261,9 @@ utils.isUserEnrolled = async (userid) => {
 utils.getAllUsers = async (usertype) => {
     let id ;
     let ccp;
-    if(usertype == "Country"){
-        id = configdata.CountryappAdmin;
+    if(usertype == "admin"){
+        id = configdata.Admin;
         ccp = ccp_cou;
-    }
-    else if(usertype == "Producer"){
-        id = configdata.ProducerappAdmin;
-        ccp = ccp_pro;
-    }
-    else if(usertype == "Writer"){
-        id = configdata.WriterappAdmin;
-        ccp = ccp_wri;
-    }
-    else if(usertype == "Actor"){
-        id = configdata.ActorappAdmin;
-        ccp = ccp_act;
     }
     else{
         return "Invalid Type";
@@ -369,21 +326,17 @@ utils.setUserContext = async (userid, pwd,usertype) => {
         console.log('Connect to Fabric gateway with userid:' + userid);
         let id ;
         let ccp;
-    if(usertype == "Country"){
-        id = configdata.CountryappAdmin;
+    if(usertype == "Faculty"){
+        id = configdata.FacultyappAdmin;
         ccp = ccp_cou;
     }
-    else if(usertype == "Producer"){
-        id = configdata.ProducerappAdmin;
-        ccp = ccp_pro;
+    else if(usertype == "admin"){
+        id = configdata.Admin;
+        ccp = ccp_org1;
     }
-    else if(usertype == "Writer"){
-        id = configdata.WriterappAdmin;
+    else if(usertype == "Student"){
+        id = configdata.StudentAppAdmin;
         ccp = ccp_wri;
-    }
-    else if(usertype == "Actor"){
-        id = configdata.ActorappAdmin;
-        ccp = ccp_act;
     }
     else{
         return "Invalid Type";
@@ -410,26 +363,22 @@ utils.AdmitAStudent = async function(userName,usertype,name,rollno) {
      let id ;
         let ccp;
         console.log(usertype);
-    if(usertype == "Country"){
-        id = configdata.CountryappAdmin;
-        ccp = ccp_cou;
-    }
-    else if(usertype == "Producer"){
-        id = configdata.ProducerappAdmin;
-        ccp = ccp_pro;
-    }
-    else if(usertype == "Writer"){
-        id = configdata.WriterappAdmin;
-        ccp = ccp_wri;
-    }
-    else if(usertype == "Actor"){
-        id = configdata.ActorappAdmin;
-        ccp = ccp_act;
-    }
-    else{
-        return "Invalid Type";
-    }
-      try{  console.log('we here in createAsset')
+        if(usertype == "Faculty"){
+            id = configdata.FacultyappAdmin;
+            ccp = ccp_cou;
+        }
+        else if(usertype == "admin"){
+            id = configdata.Admin;
+            ccp = ccp_org1;
+        }
+        else if(usertype == "Student"){
+            id = configdata.StudentAppAdmin;
+            ccp = ccp_wri;
+        }
+        else{
+            return "Invalid Type";
+        }
+      try{ 
 
         const userGateway = new Gateway();
         await userGateway.connect(ccp, { wallet, identity: userName, discovery:configdata.gatewayDiscovery});
@@ -462,25 +411,21 @@ utils.AddGrade = async function(userName,usertype,rollno,semno,Dict){
          let id ;
         let ccp;
         console.log(usertype);
-    if(usertype == "Country"){
-        id = configdata.CountryappAdmin;
-        ccp = ccp_cou;
-    }
-    else if(usertype == "Producer"){
-        id = configdata.ProducerappAdmin;
-        ccp = ccp_pro;
-    }
-    else if(usertype == "Writer"){
-        id = configdata.WriterappAdmin;
-        ccp = ccp_wri;
-    }
-    else if(usertype == "Actor"){
-        id = configdata.ActorappAdmin;
-        ccp = ccp_act;
-    }
-    else{
-        return "Invalid Type";
-    }
+        if(usertype == "Faculty"){
+            id = configdata.FacultyappAdmin;
+            ccp = ccp_cou;
+        }
+        else if(usertype == "admin"){
+            id = configdata.Admin;
+            ccp = ccp_org1;
+        }
+        else if(usertype == "Student"){
+            id = configdata.StudentAppAdmin;
+            ccp = ccp_wri;
+        }
+        else{
+            return "Invalid Type";
+        }
         const userGateway = new Gateway();
         await userGateway.connect(ccp, { wallet, identity: userName, discovery:configdata.gatewayDiscovery});
 
@@ -513,25 +458,21 @@ utils.GetStudentInfo = async function(userName,rollno,usertype) {
         let id ;
         let ccp;
         console.log(usertype);
-    if(usertype == "Country"){
-        id = configdata.CountryappAdmin;
-        ccp = ccp_cou;
-    }
-    else if(usertype == "Producer"){
-        id = configdata.ProducerappAdmin;
-        ccp = ccp_pro;
-    }
-    else if(usertype == "Writer"){
-        id = configdata.WriterappAdmin;
-        ccp = ccp_wri;
-    }
-    else if(usertype == "Actor"){
-        id = configdata.ActorappAdmin;
-        ccp = ccp_act;
-    }
-    else{
-        return "Invalid Type";
-    }
+        if(usertype == "Faculty"){
+            id = configdata.FacultyappAdmin;
+            ccp = ccp_cou;
+        }
+        else if(usertype == "admin"){
+            id = configdata.Admin;
+            ccp = ccp_org1;
+        }
+        else if(usertype == "Student"){
+            id = configdata.StudentAppAdmin;
+            ccp = ccp_wri;
+        }
+        else{
+            return "Invalid Type";
+        }
         
         const userGateway = new Gateway();
         await userGateway.connect(ccp, { wallet, identity: userName, discovery:configdata.gatewayDiscovery});
@@ -564,29 +505,21 @@ utils.SeeAll = async function(userName,usertype) {
         let id ;
         let ccp;
         console.log(usertype);
-    if(usertype == "Country"){
-        id = configdata.CountryappAdmin;
-        ccp = ccp_cou;
-    }
-    else if(usertype == "Producer"){
-        id = configdata.ProducerappAdmin;
-        ccp = ccp_pro;
-    }
-    else if(usertype == "Writer"){
-        id = configdata.WriterappAdmin;
-        ccp = ccp_wri;
-    }
-    else if(usertype == "Actor"){
-        id = configdata.ActorappAdmin;
-        ccp = ccp_act;
-    }
-    else if(usertype == "Admin"){
-        id = "Admin";
-        ccp= ccp_pro;
-    }
-    else{
-        return "Invalid Type";
-    }
+        if(usertype == "Faculty"){
+            id = configdata.FacultyappAdmin;
+            ccp = ccp_cou;
+        }
+        else if(usertype == "admin"){
+            id = configdata.Admin;
+            ccp = ccp_org1;
+        }
+        else if(usertype == "Student"){
+            id = configdata.StudentAppAdmin;
+            ccp = ccp_wri;
+        }
+        else{
+            return "Invalid Type";
+        }
         
         const userGateway = new Gateway();
         await userGateway.connect(ccp, { wallet, identity: "sneha", discovery:configdata.gatewayDiscovery});

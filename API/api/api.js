@@ -314,22 +314,18 @@ app.post('/afterlogin', (req, res) => {
                 var tmp = userType.toString();
                 console.log("Usertype :"+tmp);
                 result.usertype = tmp.substring(1, tmp.length - 1);
-                if(tmp == "Producer"){
+                if(tmp == "Admin"){
                 	username = userId;
-                	return res.send("Producer");
+                	return res.send("Admin");
         			
                 }
-                else if(tmp == "Country"){
-                	console.log("Country");
-                	return res.send("Country");
+                else if(tmp == "Student"){
+                	console.log("Student");
+                	return res.send("Student");
                 }
-                else if(tmp == "Actor"){
-                    console.log("Actor");
-                    return res.send("Actor");
-                }
-                else if(tmp == "Writer"){
-                    console.log("Writer");
-                    return res.send("Writer");
+                else if(tmp == "Faculty"){
+                    console.log("Faculty");
+                    return res.send("Faculty");
                 }
                 else{
                    return res.send("failed");
