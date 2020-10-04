@@ -11,17 +11,15 @@ const path = require('path');
 
 // capture network variables from config.json
 // const configPath = path.join(process.cwd(), './www/blockchain/config.json');
-const configPath = path.join(process.cwd(), '../new_gateway/config.json');
+const configPath = path.join(process.cwd(), '../gateway/config.json');
 const configJSON = fs.readFileSync(configPath, 'utf8');
 const config = JSON.parse(configJSON);
-var connection_file = config.connection_file;
-var appAdmin = config.BuyerappAdmin;
-var orgMSPID = config.BuyerorgMSPID;
-var userName = "yash";
+var appAdmin = config.StudentappAdmin;
+var orgMSPID = config.StudentorgMSPID;
+var userName = "Studnet2";
 var gatewayDiscovery = config.gatewayDiscovery;
 
-// const ccpPath = path.join(process.cwd(), './www/blockchain/ibpConnection.json');
-const ccpPath = path.join(process.cwd(), '../new_gateway/ibpConnection_country.json');
+const ccpPath = path.join(process.cwd(), '../gateway/ibpConnection_Org2.json');
 const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
 const ccp = JSON.parse(ccpJSON);
 
@@ -29,7 +27,7 @@ async function main() {
     try {
 
         // Create a new file system based wallet for managing identities.
-        const walletPath = path.join(process.cwd(), 'newwallet');
+        const walletPath = path.join(process.cwd(), 'wallets');
         const wallet = new FileSystemWallet(walletPath);
         console.log(`Wallet path: ${walletPath}`);
 
@@ -51,17 +49,15 @@ async function main() {
         // Create a new gateway for connecting to our peer node.
         const gateway = new Gateway();
         await gateway.connect(ccp, { wallet, identity: appAdmin, discovery: gatewayDiscovery });
-	console.log("Connected");
         // Get the CA client object from the gateway for interacting with the CA.
         const ca = gateway.getClient().getCertificateAuthority();
         const adminIdentity = gateway.getCurrentIdentity();
         console.log(`AdminIdentity: + ${adminIdentity}`); 
 
         // Register the user, enroll the user, and import the new identity into the wallet.
-        const secret = "yashpw"
+        const secret = "Studentpw2"
 
         console.log('secret: ')
-        console.log(secret)
         const enrollment = await ca.enroll({ enrollmentID: userName, enrollmentSecret: secret });
         const userIdentity = X509WalletMixin.createIdentity(orgMSPID, enrollment.certificate, enrollment.key.toBytes());
         wallet.import(userName, userIdentity);

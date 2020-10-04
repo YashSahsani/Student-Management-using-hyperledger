@@ -10,7 +10,6 @@
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    
     "test": "nyc mocha --recursive",
     "start": "fabric-chaincode-node start"
   },
@@ -18,7 +17,9 @@
   "author": "Yash Sahsani",
   "license": "Apache-2.0",
   "dependencies": {
+    "fabric-ca-client": "^2.2.2",
     "fabric-contract-api": "^1.4.5",
+    "fabric-network": "^1.4.5",
     "fabric-shim": "^1.4.5"
   },
   "devDependencies": {

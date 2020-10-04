@@ -11,18 +11,19 @@ const path = require('path');
 
 // capture network variables from config.json
 // const configPath = path.join(process.cwd(), './www/blockchain/config.json');
-const configPath = path.join(process.cwd(), '../new_gateway/config.json');
+const configPath = path.join(process.cwd(), '../gateway/config.json');
 const configJSON = fs.readFileSync(configPath, 'utf8');
 const config = JSON.parse(configJSON);
-var connection_file = config.connection_file;
-var appAdmin = config.ActorappAdmin;
-var appAdminSecret = config.ActorappAdminSecret;
-var orgMSPID = config.ActororgMSPID;
-console.log("here");
-var caName = config.ActorcaName;
+var appAdmin = config.StudentappAdmin;
+console.log(appAdmin);
+var appAdminSecret = config.StudentappAdminSecret;
+console.log(appAdminSecret);
+var orgMSPID = config.StudentorgMSPID;
+console.log(orgMSPID);
+var caName = config.StudentcaName;
 
 // const ccpPath = path.join(process.cwd(), './www/blockchain/ibpConnection.json');
-const ccpPath = path.join(process.cwd(), '../new_gateway/ibpConnection_actor.json');
+const ccpPath = path.join(process.cwd(), '../gateway/ibpConnection_Org2.json');
 const ccpJSON = fs.readFileSync(ccpPath, 'utf8');
 const ccp = JSON.parse(ccpJSON);
 
@@ -32,12 +33,11 @@ async function main() {
 
         // Create a new CA client for interacting with the CA.
         
-        // const caURL = 'https://124b79efa8f544fc940408394edac7b5-ca6365f4.horea-blockchain-32x32xp.us-south.containers.appdomain.cloud:7054';
         const caURL = caName;
         const ca = new FabricCAServices(caURL);
 
         // Create a new file system based wallet for managing identities.
-        const walletPath = path.join(process.cwd(), 'newwallet');
+        const walletPath = path.join(process.cwd(), 'wallets');
         const wallet = new FileSystemWallet(walletPath);
         console.log(`Wallet path: ${walletPath}`);
 

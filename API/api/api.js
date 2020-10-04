@@ -93,23 +93,13 @@ app.post('/api/enroll-user/', (req, response) => {
     let userId = req.body.userid;
     let userPwd = req.body.password;
     let userType = req.body.usertype;
-    let countryname ;
-    try
-    {
-    countryname = request.body.countryname;
-    console.log("\n countryname "+ countryname);
-    }
-    catch (e)
-    {
-        console.log(e);
-    }
 
     console.log("\n userId: " + userId);
     console.log("\n userPwd: " + userPwd);
     console.log("\n userType: " + userType);
     console.log("\n---------------------------------------------------");
 
-    utils.enrollUser(userId, userPwd, userType,countryname).then(result => {
+    utils.enrollUser(userId, userPwd, userType).then(result => {
         console.log("\n result from enrollUser = \n", result)
         console.log("\n----------------- api/enrollUser --------------------------");
         response.send(result);
@@ -140,6 +130,7 @@ app.get('/api/is-user-enrolled/:id', (req, response) => {
 
 }) 
 app.get('/api/users', (req, res) => {
+    
 
     utils.getAllUsers(usertype).then((result) => {
         // process response
@@ -254,12 +245,12 @@ app.post('/api/AdmitAStudnet', (req, res) => {
 
 });
 
-app.get('/api/GetStudnetInfo',(req,res) =>{
+app.post('/api/GetStudnetInfo',(req,res) =>{
 let username = req.body.username;
-let rollno = req.query.rollno;
-let usertype = req.query.usertype;
+let rollno = req.body.rollno;
+let usertype = req.body.usertype;
 console.log("=================");
-console.log(rollno);
+console.log(username);
 utils.GetStudentInfo(username,rollno,usertype)
     .then(result =>{
         res.json(result)

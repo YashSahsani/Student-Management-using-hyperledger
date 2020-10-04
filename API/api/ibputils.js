@@ -39,11 +39,11 @@ ccp_org2 = JSON.parse(AccpJSON);
 
 
 // A wallet stores a collection of identities for use
-const walletPath = path.join(process.cwd(), './wallet');
+const walletPath = path.join(process.cwd(), '/wallets');
 wallet = new FileSystemWallet(walletPath);
 console.log(`Wallet path: ${walletPath}`);
 
-const peerIdentity = 'StudentAppAdmin';
+const peerIdentity = 'StudentApp';
 
     // A gateway defines the peers used to access Fabric networks
     gateway = new Gateway();
@@ -51,7 +51,6 @@ const peerIdentity = 'StudentAppAdmin';
      try {
 
     let response;
-
     // Check to see if we've already enrolled the user.
     const userExists = await wallet.exists(peerIdentity);
     if (!userExists) {
@@ -68,10 +67,10 @@ const peerIdentity = 'StudentAppAdmin';
         console.log('user: ' + userid + ", pwd: ", pwd + ", usertype: ", usertype);
       //ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
           // Set up the MSP Id
-     orgMSPID = ccp_org1.client.organization;
+     orgMSPID = ccp_org2.client.organization;
      console.log('MSP ID: ' + orgMSPID);
     //use our config file, our peerIdentity, and our discovery options to connect to Fabric network.
-    await gateway.connect(ccp_org1, { wallet, identity: peerIdentity, discovery: configdata.gatewayDiscovery });
+    await gateway.connect(ccp_org2, { wallet, identity: peerIdentity, discovery: configdata.gatewayDiscovery });
     //connect to our channel that has been created on IBM yash/Internship_projects Platform
     const network = await gateway.getNetwork('mychannel');
     console.log("here");
@@ -94,9 +93,13 @@ utils.registerUser = async (userid, userpwd, usertype,countryname) => {
     console.log("\n userid: " + userid + ", pwd: " + userpwd + ", usertype: " + usertype)
     let id ;
     let ccp;
-    if(usertype == "admin"){
-        id = configdata.CountryappAdmin;
-        ccp = ccp_cou;
+    if(usertype == "Student"){
+        id = configdata.StudentappAdmin;
+        ccp = ccp_org2;
+    }
+    else if(usertype == "Faculty"){
+        id = configdata.FacultyAppAdmin;
+        ccp = ccp_org1;
     }
     else{
         return "Invalid Type";
@@ -121,27 +124,6 @@ utils.registerUser = async (userid, userpwd, usertype,countryname) => {
     console.log(user);
     //  Register is done using admin signing authority*/
     var newUserDetails;
-    if( usertype == "Country"){
-     newUserDetails = {
-        enrollmentID: userid,
-        enrollmentSecret: userpwd,
-        role : "client",
-        //affiliation: orgMSPID,
-        //profile: 'tls',
-        attrs: [
-            {
-                "name": "usertype",
-                "value": usertype,
-                "ecert": true
-                
-            },{
-                "name":  "countryname",
-                "value": countryname,
-                "ecert": true
-            }],
-        maxEnrollments: 5
-    };}
-    else{
         newUserDetails = {
         enrollmentID: userid,
         enrollmentSecret: userpwd,
@@ -156,8 +138,6 @@ utils.registerUser = async (userid, userpwd, usertype,countryname) => {
             }],
         maxEnrollments: 5
     };
-
-    }
         const gateway = new Gateway();
         await gateway.connect(ccp, { wallet, identity: id, discovery: configdata.gatewayDiscovery });
         console.log("Connected");
@@ -188,12 +168,16 @@ utils.registerUser = async (userid, userpwd, usertype,countryname) => {
         });
 }  //  end of function registerUser
 
-utils.enrollUser = async (userid, userpwd, usertype,countryname) => {
+utils.enrollUser = async (userid, userpwd, usertype) => {
     let ccp;
     let id;
-    if(usertype == "admin"){
-        id = configdata.CountryappAdmin;
-        ccp = ccp_cou;
+    if(usertype == "Student"){
+        id = configdata.StudentappAdmin;
+        ccp = ccp_org2;
+    }
+    else if(usertype == "Faculty"){
+        id = configdata.FacultyAppAdmin;
+        ccp = ccp_org1;
     }
     else{
         return "Invalid Type";
@@ -328,7 +312,7 @@ utils.setUserContext = async (userid, pwd,usertype) => {
         let ccp;
     if(usertype == "Faculty"){
         id = configdata.FacultyappAdmin;
-        ccp = ccp_cou;
+        ccp = ccp_org1;
     }
     else if(usertype == "admin"){
         id = configdata.Admin;
@@ -336,7 +320,7 @@ utils.setUserContext = async (userid, pwd,usertype) => {
     }
     else if(usertype == "Student"){
         id = configdata.StudentAppAdmin;
-        ccp = ccp_wri;
+        ccp = ccp_org2;
     }
     else{
         return "Invalid Type";
@@ -460,7 +444,7 @@ utils.GetStudentInfo = async function(userName,rollno,usertype) {
         console.log(usertype);
         if(usertype == "Faculty"){
             id = configdata.FacultyappAdmin;
-            ccp = ccp_cou;
+            ccp = ccp_org2;
         }
         else if(usertype == "admin"){
             id = configdata.Admin;
@@ -468,7 +452,7 @@ utils.GetStudentInfo = async function(userName,rollno,usertype) {
         }
         else if(usertype == "Student"){
             id = configdata.StudentAppAdmin;
-            ccp = ccp_wri;
+            ccp = ccp_org2;
         }
         else{
             return "Invalid Type";
