@@ -15,7 +15,7 @@ var bLocalHost;
 var ccp_org1;
 var ccp_org2;
 var orgMSPID;
-
+var walletPath;
 var contract = null;
 
 const utils = {};
@@ -39,7 +39,7 @@ ccp_org2 = JSON.parse(AccpJSON);
 
 
 // A wallet stores a collection of identities for use
-const walletPath = path.join(process.cwd(), '/wallets');
+walletPath = path.join(process.cwd(), '/wallets/Org2');
 wallet = new FileSystemWallet(walletPath);
 console.log(`Wallet path: ${walletPath}`);
 
@@ -88,7 +88,7 @@ return contract;
 
 
 
-utils.registerUser = async (userid, userpwd, usertype,countryname) => {
+utils.registerUser = async (userid, userpwd, usertype) => {
     console.log("\n------------  function registerUser ---------------");
     console.log("\n userid: " + userid + ", pwd: " + userpwd + ", usertype: " + usertype)
     let id ;
@@ -96,10 +96,17 @@ utils.registerUser = async (userid, userpwd, usertype,countryname) => {
     if(usertype == "Student"){
         id = configdata.StudentappAdmin;
         ccp = ccp_org2;
+        walletPath = path.join(process.cwd(), '/wallets/Org2');
+        wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);  
     }
     else if(usertype == "Faculty"){
         id = configdata.FacultyAppAdmin;
+        console.log(id);
         ccp = ccp_org1;
+        walletPath = path.join(process.cwd(), '/wallets/Org1');
+        wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
     }
     else{
         return "Invalid Type";
@@ -174,10 +181,18 @@ utils.enrollUser = async (userid, userpwd, usertype) => {
     if(usertype == "Student"){
         id = configdata.StudentappAdmin;
         ccp = ccp_org2;
+        console.log(id);
+
+        walletPath = path.join(process.cwd(), '/wallets/Org2');
+        wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);  
     }
     else if(usertype == "Faculty"){
         id = configdata.FacultyAppAdmin;
         ccp = ccp_org1;
+        walletPath = path.join(process.cwd(), '/wallets/Org1');
+        wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
     }
     else{
         return "Invalid Type";
@@ -227,7 +242,20 @@ utils.enrollUser = async (userid, userpwd, usertype) => {
     });
 }
 
-utils.isUserEnrolled = async (userid) => {
+utils.isUserEnrolled = async (userid,usertype) => {
+    if(usertype == "Faculty"){
+        walletPath = path.join(process.cwd(), '/wallets/Org1');
+        wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);  
+    }
+    else if(usertype == "Student"){
+        walletPath = path.join(process.cwd(), '/wallets/Org2');
+        wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
+    }
+    else{
+        return "Invalid Type";
+    }
     console.log("\n---------------  function isUserEnrolled ------------------------------------");
     console.log("\n userid: " + userid);
     console.log("\n---------------------------------------------------");
@@ -297,6 +325,24 @@ utils.setUserContext = async (userid, pwd,usertype) => {
     // Note that this case is not handled here.
 
     // Verify if user is already enrolled
+    if(usertype == "Faculty"){
+        walletPath = path.join(process.cwd(), '/wallets/Org1');
+        wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);  
+    }
+    else if(usertype == "admin"){
+        walletPath = path.join(process.cwd(), '/wallets/Org1');
+        wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
+    }
+    else if(usertype == "Student"){
+        walletPath = path.join(process.cwd(), '/wallets/Org2');
+        wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
+    }
+    else{
+        return "Invalid Type";
+    }
     console.log(usertype);
     const userExists = await wallet.exists(userid);
     if (!userExists) {
@@ -313,14 +359,23 @@ utils.setUserContext = async (userid, pwd,usertype) => {
     if(usertype == "Faculty"){
         id = configdata.FacultyappAdmin;
         ccp = ccp_org1;
+        walletPath = path.join(process.cwd(), '/wallets/Org1');
+        wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);  
     }
     else if(usertype == "admin"){
         id = configdata.Admin;
         ccp = ccp_org1;
+        walletPath = path.join(process.cwd(), '/wallets/Org1');
+        wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
     }
     else if(usertype == "Student"){
         id = configdata.StudentAppAdmin;
         ccp = ccp_org2;
+        walletPath = path.join(process.cwd(), '/wallets/Org2');
+        wallet = new FileSystemWallet(walletPath);
+        console.log(`Wallet path: ${walletPath}`);
     }
     else{
         return "Invalid Type";
@@ -349,15 +404,24 @@ utils.AdmitAStudent = async function(userName,usertype,name,rollno) {
         console.log(usertype);
         if(usertype == "Faculty"){
             id = configdata.FacultyappAdmin;
-            ccp = ccp_cou;
+            ccp = ccp_org1;
+            walletPath = path.join(process.cwd(), '/wallets/Org1');
+            wallet = new FileSystemWallet(walletPath);
+            console.log(`Wallet path: ${walletPath}`);  
         }
         else if(usertype == "admin"){
             id = configdata.Admin;
             ccp = ccp_org1;
+            walletPath = path.join(process.cwd(), '/wallets/Org1');
+            wallet = new FileSystemWallet(walletPath);
+            console.log(`Wallet path: ${walletPath}`);
         }
         else if(usertype == "Student"){
             id = configdata.StudentAppAdmin;
-            ccp = ccp_wri;
+            ccp = ccp_org2;
+            walletPath = path.join(process.cwd(), '/wallets/Org2');
+            wallet = new FileSystemWallet(walletPath);
+            console.log(`Wallet path: ${walletPath}`);
         }
         else{
             return "Invalid Type";
@@ -397,15 +461,24 @@ utils.AddGrade = async function(userName,usertype,rollno,semno,Dict){
         console.log(usertype);
         if(usertype == "Faculty"){
             id = configdata.FacultyappAdmin;
-            ccp = ccp_cou;
+            ccp = ccp_org1;
+            walletPath = path.join(process.cwd(), '/wallets/Org1');
+            wallet = new FileSystemWallet(walletPath);
+            console.log(`Wallet path: ${walletPath}`);  
         }
         else if(usertype == "admin"){
             id = configdata.Admin;
             ccp = ccp_org1;
+            walletPath = path.join(process.cwd(), '/wallets/Org1');
+            wallet = new FileSystemWallet(walletPath);
+            console.log(`Wallet path: ${walletPath}`);
         }
         else if(usertype == "Student"){
             id = configdata.StudentAppAdmin;
-            ccp = ccp_wri;
+            ccp = ccp_org2;
+            walletPath = path.join(process.cwd(), '/wallets/Org2');
+            wallet = new FileSystemWallet(walletPath);
+            console.log(`Wallet path: ${walletPath}`);
         }
         else{
             return "Invalid Type";
@@ -444,15 +517,24 @@ utils.GetStudentInfo = async function(userName,rollno,usertype) {
         console.log(usertype);
         if(usertype == "Faculty"){
             id = configdata.FacultyappAdmin;
-            ccp = ccp_org2;
+            ccp = ccp_org1;
+            walletPath = path.join(process.cwd(), '/wallets/Org1');
+            wallet = new FileSystemWallet(walletPath);
+            console.log(`Wallet path: ${walletPath}`);  
         }
         else if(usertype == "admin"){
             id = configdata.Admin;
             ccp = ccp_org1;
+            walletPath = path.join(process.cwd(), '/wallets/Org1');
+            wallet = new FileSystemWallet(walletPath);
+            console.log(`Wallet path: ${walletPath}`);
         }
         else if(usertype == "Student"){
             id = configdata.StudentAppAdmin;
             ccp = ccp_org2;
+            walletPath = path.join(process.cwd(), '/wallets/Org2');
+            wallet = new FileSystemWallet(walletPath);
+            console.log(`Wallet path: ${walletPath}`);
         }
         else{
             return "Invalid Type";
@@ -491,15 +573,24 @@ utils.SeeAll = async function(userName,usertype) {
         console.log(usertype);
         if(usertype == "Faculty"){
             id = configdata.FacultyappAdmin;
-            ccp = ccp_cou;
+            ccp = ccp_org1;
+            walletPath = path.join(process.cwd(), '/wallets/Org1');
+            wallet = new FileSystemWallet(walletPath);
+            console.log(`Wallet path: ${walletPath}`);  
         }
         else if(usertype == "admin"){
             id = configdata.Admin;
             ccp = ccp_org1;
+            walletPath = path.join(process.cwd(), '/wallets/Org1');
+            wallet = new FileSystemWallet(walletPath);
+            console.log(`Wallet path: ${walletPath}`);
         }
         else if(usertype == "Student"){
             id = configdata.StudentAppAdmin;
-            ccp = ccp_wri;
+            ccp = ccp_org2;
+            walletPath = path.join(process.cwd(), '/wallets/Org2');
+            wallet = new FileSystemWallet(walletPath);
+            console.log(`Wallet path: ${walletPath}`);
         }
         else{
             return "Invalid Type";

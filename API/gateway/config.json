@@ -1,12 +1,14 @@
 {
   "Faculty_connection_file": "ibpConnection_Org1.json",
-  "FacultyappAdmin": "FacultyApp",
-  "FacultyorgMSPID":"Org1msp",
   "Student_connection_file": "ibpConnection_Org2.json",
   "StudentappAdmin": "admin",
   "StudentappAdminSecret":"adminpw",
   "StudentcaName":"http://localhost:17135",
   "StudentorgMSPID":"Org2msp",
+  "FacultyAppAdmin": "admin",
+  "FacultyappAdminSecret":"adminpw",
+  "FacultycaName":"http://localhost:17130",
+  "FacultyorgMSPID":"Org1msp",
   "channel_name":"mychannel",
   "smart_contract_name":"Blockchain",
   "gatewayDiscovery": { "enabled": true, "asLocalhost": true }

@@ -111,14 +111,15 @@ app.post('/api/enroll-user/', (req, response) => {
 
 })  //  end of app.post('/api/enroll-user/', (req, res) )
 
-app.get('/api/is-user-enrolled/:id', (req, response) => {
+app.get('/api/is-user-enrolled/:id/:type', (req, response) => {
 
     console.log("\n--------------  api/isUserEnrolled --------------------------");
     let userId = req.params.id;
+    let usertype = req.params.type;
 
     console.log("\n userid: " + userId);
 
-    utils.isUserEnrolled(userId).then(result => {
+    utils.isUserEnrolled(userId,usertype).then(result => {
         console.log("\n result from isUserEnrolled = \n", result)
         console.log("\n----------------- api/isUserEnrolled --------------------------");
         response.send(result);
@@ -263,16 +264,16 @@ utils.GetStudentInfo(username,rollno,usertype)
 
 });
 
-app.get('/api/AddGrade',(req,res) =>{
+app.post('/api/AddGrade',(req,res) =>{
   
-let username  = req.query.username;
-let rollno = req.query.rollno;
-let usertype = req.query.usertype;
-let semno = req.query.semno;
-let Dict = req.query.dict;
+let username  = req.body.username;
+let rollno = req.body.rollno;
+let usertype = req.body.usertype;
+let semno = req.body.semno;
+let Dict = req.body.dict;
 console.log("=================");
-console.log(username);
-utils.AddGrade(username,usertype,rollno,semno,Dict)
+console.log(Dict);
+utils.AddGrade(username,usertype,rollno,semno,JSON.stringify(Dict))
     .then(result =>{
         res.json({'errorCode':result})
     }, (error) => {
