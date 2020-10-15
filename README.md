@@ -55,6 +55,7 @@ $ curl http://{environment}/api/is-user-enrolled/{name}/{usertype}
 $ # Example
 $ curl http://{environment}/api/is-user-enrolled/Faculty1/Faculty ; echo
 ```
+
 ```bash
 $ # Login a user
 $ curl -X POST -H "Content-Type: application/json" -d '{"userid":"{name}","password":"{password}"}' http://{environment}/api/login/{usertype}
@@ -69,7 +70,12 @@ $ curl http://{environment}/api/current-user-id;echo
 $ # To get current user type.
 $ curl http://{environment}/api/current-user-type;echo
 ```
-
+```bash
+$ # Admit a Student (can only be done by identity having attribute usertype=admin)
+$ curl -X POST -H "Content-Type: application/json" -d '{"userid":"{name}","rollno":"{rollno}","name":"{name}","usertype":"{usertype}"}' http://{environment}/api/AdmitAStudent
+$ # Example
+$ curl -X POST -H "Content-Type: application/json" -d '{"userid":"Faculty1","rollno":"18it112","name":"Yash Mahesh Sahsani","usertype":"Student"}' http://{environment}/api/AdmitAStudent
+```
 ```bash
 $ # Get Student Details
 $ curl -X POST -H "Content-Type: application/json" -d '{"username":"{name}","rollno":"{rollno}","usertype":"{usertype}"}' http://{environment}/api/GetStudnetInfo | jq
