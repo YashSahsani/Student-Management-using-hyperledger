@@ -284,6 +284,25 @@ utils.AddGrade(username,usertype,rollno,semno,JSON.stringify(Dict))
     })
 
 });
+app.post('/api/AdmitAStudent',(req,res) =>{
+  
+    let username  = req.body.username;
+    let rollno = req.body.rollno;
+    let usertype = req.body.usertype;
+    let name = req.body.name;
+    console.log("=================");
+    console.log(Dict);
+    utils.AdmitAStudent(username,usertype,rollno,name)
+        .then(result =>{
+            res.json({'errorCode':result})
+        }, (error) => {
+            //  handle error if transaction failed
+            error.errorCode = 404;
+            console.log('Error thrown from tx promise: ', error);
+            res.json(error);
+        })
+    
+    });
 
 
 app.post('/afterlogin', (req, res) => {

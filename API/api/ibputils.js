@@ -454,7 +454,7 @@ utils.AdmitAStudent = async function(userName,usertype,name,rollno) {
 }
 
 
-utils.AddGrade = async function(userName,usertype,rollno,semno,Dict){
+utils.AdmitAStudent = async function(userName,usertype,rollno,name){
     try{
          let id ;
         let ccp;
@@ -493,7 +493,7 @@ utils.AddGrade = async function(userName,usertype,rollno,semno,Dict){
         contract = await network.getContract(configdata["smart_contract_name"]);
         console.log('Userid: ' + userName + ' connected to smartcontract: ' +
         configdata["smart_contract_name"] + ' in channel: ' + configdata["channel_name"]);
-        const result = await contract.submitTransaction('AddGrade', rollno,semno,Dict);
+        const result = await contract.submitTransaction('AdmitAStudent', rollno,name);
 
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
 
