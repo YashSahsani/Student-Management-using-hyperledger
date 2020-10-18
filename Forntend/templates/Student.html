@@ -1,0 +1,73 @@
+<html lang="en"><head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>Actor</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<section>
+  <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+     <!--  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button> -->
+      <a class="navbar-brand" href="#myPage">
+        <img src="{{url_for('static', filename='logo.jpg')}}" style="
+    width: 150px;
+">
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <h2 style=" margin-top: 35px; font-size: 31px;   color: #9d005c;  text-shadow: -1px 1px orange;">WELCOME TO CHARUSAT</h2>
+        <!-- <li><a href="#about">ABOUT</a></li>
+        <li><a href="#services">SERVICES</a></li>
+        <li><a href="#portfolio">PORTFOLIO</a></li>
+        <li><a href="#pricing">PRICING</a></li>
+        <li class="active"><a href="#contact">CONTACT</a></li> -->
+      </ul>
+    </div>
+  </div>
+</nav>
+</section>
+
+<section class="pagenm">
+<div class="container">
+<h3 class="text-center">Student</h3>
+</div>
+</section>
+
+<!-- Container (Contact Section) -->
+<div id="contact" class="container-fluid">
+ 
+    <div class="">
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-lg-6 col-sm-6">
+          <div class="row bg-grey">
+            <br/>
+            <br/>
+             <h2 class="text-center">GET INFO</h2>             
+                <div class="col-sm-12 form-group">
+                  <button class="btn btn-danger" type="submit" style="width: 100%" onclick="location.href=window.location.href+'/GetInfo';">My Info</button>
+                </div>
+                <br/><br/><br/>
+          </div>
+
+        </div>
+        <div class="col-sm-3"></div>
+      </div>
+  </div>
+</div>
+
+</body></html>
