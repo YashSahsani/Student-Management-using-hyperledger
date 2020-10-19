@@ -33,7 +33,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <h2 style=" margin-top: 35px; font-size: 31px;   color: #9d005c;  text-shadow: -1px 1px orange;">WELCOME TO Charusat</h2>
+        <h2 style=" margin-top: 35px; font-size: 31px;   color: #9d005c;  text-shadow: -1px 1px orange;">WELCOME TO MEDIACHAIN</h2>
         <!-- <li><a href="#about">ABOUT</a></li>
         <li><a href="#services">SERVICES</a></li>
         <li><a href="#portfolio">PORTFOLIO</a></li>
@@ -47,7 +47,7 @@
 
 <section class="pagenm">
 <div class="container">
-<h3 class="text-center">Add Grades</h3>
+<h3 class="text-center">Add Student</h3>
 </div>
 </section>
 
@@ -59,15 +59,12 @@
         <div class="col-sm-3"></div>
         <div class="col-lg-6 col-sm-12">
           <div class="row bg-grey">
-             <h2 class="text-center">Add Grade</h2>
+             <h2 class="text-center">Add Media Asset</h2>
+                <div class="col-sm-12 form-group">
+                  <input class="form-control" id="name" placeholder="Yash Sahsani" type="text">
+                </div>
                 <div class="col-sm-12 form-group">
                   <input class="form-control" id="rollno" placeholder="18itxxx" type="text">
-                </div>
-                <div class="col-sm-12 form-group">
-                  <input class="form-control" id="semno" placeholder="1 or 2 .." type="text">
-                </div>
-                <div class="col-sm-12 form-group">
-                  <input class="form-control" id="dict" placeholder="Json" type="text">
                 </div>
 
                 <div class="col-sm-12 form-group">
@@ -93,11 +90,10 @@
             let usertype = vurl.split('/');
             usertype = usertype[3];
             let rollno = document.querySelector('#rollno'); 
-            let semno = document.querySelector('#semno'); 
-            let Dict = document.querySelector('#dict');  
+            let name = document.querySelector('#name');   
             // Creating a XHR object 
             let xhr = new XMLHttpRequest(); 
-            let url = "/"+ usertype +"/api/AddGrade/"; 
+            let url = "/"+ usertype +"/api/AdmitAStudent/"; 
         
             // open a connection 
             xhr.open("POST", url, true); 
@@ -117,7 +113,7 @@
                 }
             }; 
             // Converting JSON data to string 
-            var data = JSON.stringify({ "rollno": rollno.value, "semno": semno.value,"dict": Dict.value,"username":username}); 
+            var data = JSON.stringify({ "rollno": rollno.value, "name":name.value,"username":username}); 
             // Sending data with the request 
             xhr.send(data); 
         } 

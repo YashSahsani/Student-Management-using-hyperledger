@@ -113,7 +113,7 @@ def api_GetStudentInfo(name,typel,rollno):
 	userid = name
 	dataj = {'username': userid,"usertype":typel,'rollno':rollno}
 	print("+++++++++++++++")
-	out = requests.get("http://localhost:3000/api/SeeAllAsset",params=dataj)
+	out = requests.get("http://localhost:3000/api/GetStudentInfo",params=dataj)
 	print(out.url)
 	sleep(3)
 	out = json.loads(out.text)
@@ -129,47 +129,39 @@ def GetStudentInfo(name,typel,rollno):
 	if(typel != "Faculty" and typel != "Student"):
 		return "error"
 	else:
-   		return render_template("GetStudentInfo.html", out=  api_GetStudentInfo(name,typel,rollno))
+   		return render_template("GetInfo.html", out=  api_GetStudentInfo(name,typel,rollno))
 @app.route("/admin/")
 def admin():
 	return render_template("admin.html")
 
 
-@app.route("/Faculty/<name>/")
+@app.route("/Faculty/<name>/AddGrade")
+def AddGrade(name):
+        return render_template("AddGrade.html",post={'error':''})
+
+@app.route("/Admin/<name>/AdmitAStudent")
 def AdmitAStudent(name):
         return render_template("AdmitAStudent.html",post={'error':''})
 
-@app.route("/Country/<name>/Asuccess")
-def success(name):
-	return render_template("BuyAsset.html",post={"error":"Congratulation..."})
-
-@app.route("/Producer/<name>/Asuccess")
-def producer_success(name):
-	return render_template("createAsset.html",post={'error':'Asset Created'})
-@app.route("/Producer/<name>/Aerror")
-def producer_error(name):
-	return render_template("createAsset.html",post={'error':'Asset Not Created'}),201
-
-@app.route("/Country/<name>/Aerror")
-def Country_error(name):
-	return render_template("BuyAsset.html",post={'error':'This asset doesn\'t exist or Something went wrong please try again.'}),201
+@app.route("/Faculty/<name>/Asuccess")
+def Faculty_success(name):
+	return render_template("AddGrade.html",post={'error':'Grades added'})
+@app.route("/Faculty/<name>/Aerror")
+def Faculty_error(name):
+	return render_template("AddGrade.html",post={'error':'Something went wrong try again'}),201
 
 
+@app.route("/Student/<name>")
+def Student(name):
+    return render_template("Student.html")
 
-@app.route("/Country/<name>/Psuccess")
-def Country_Psuc(name):
-	return render_template("play.html",post={'error':'media asset played'})
+@app.route("/Faculty/<name>/")
+def Faculty(name):
+        return render_template("Faculty.html")
 
-
-@app.route("/Country/<name>")
-def Country(name):
-    return render_template("Buyer.html")
-
-@app.route("/Producer/<name>")
-def Producer(name):
-        return render_template("Producer.html")
-
-
+@app.route("/Admin/<name>/")
+def Admin_dash(name):
+        return render_template("Admin.html")
 @app.route("/register-user/error")
 def login_err():
 	return render_template("index.html",post={"error":"Something went wrong please retry."})
