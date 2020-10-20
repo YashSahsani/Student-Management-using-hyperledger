@@ -150,6 +150,12 @@ def Faculty_success(name):
 def Faculty_error(name):
 	return render_template("AddGrade.html",post={'error':'Something went wrong try again'}),201
 
+@app.route("/admin/<name>/Asuccess")
+def Faculty_success(name):
+	return render_template("AdmitAStudent.html",post={'error':'Student Admitted'})
+@app.route("/admin/<name>/Aerror")
+def Faculty_error(name):
+	return render_template("AdmitAStudent.html",post={'error':'Something went wrong try again'}),201
 
 @app.route("/Student/<name>")
 def Student(name):
