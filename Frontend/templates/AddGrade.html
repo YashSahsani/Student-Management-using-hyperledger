@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -27,8 +27,7 @@
       </button> -->
       <a class="navbar-brand" href="#myPage">
         <img src="{{url_for('static', filename='logo.jpg')}}" style="
-    width: 150px;
-">
+    width: 150px;">
       </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -51,6 +50,8 @@
 </div>
 </section>
 
+
+
 <!-- Container (Contact Section) -->
 <div id="contact" class="container-fluid">
  
@@ -66,9 +67,46 @@
                 <div class="col-sm-12 form-group">
                   <input class="form-control" id="semno" placeholder="1 or 2 .." type="text">
                 </div>
-                <div class="col-sm-12 form-group">
-                  <input class="form-control" id="dict" placeholder="Json" type="text">
-                </div>
+                <div class="dropdown" align="center">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">No:of subjects to enter.
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+    </ul>
+  </div>
+
+  <style type="text/css">
+  table {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+  </style>
+    <table align="center">
+    <tr>
+    <th>Subject</th>
+    <th>Marks</th>
+    </tr>
+    <tr>
+    <td><input class="form-control" id="Subject"  type="text"></td>
+    <td><input class="form-control" id="Marks"  type="text"></td>
+    </tr>
+</table>
 
                 <div class="col-sm-12 form-group">
                   <button class="btn btn-primary" type="submit" style="width: 100%" onclick="sendJSON()">Submit</button>
