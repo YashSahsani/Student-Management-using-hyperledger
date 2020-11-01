@@ -92,5 +92,5 @@ $ curl -X POST -H "Content-Type: application/json" -d '{"username":"Faculty1","r
 - [x] Create a Fabric Network.
 - [x] Create a basic smart contract for POC.
 - [x] Create API to interact with hyperledger fabric.
-- [ ] Create Forntend to interact with hyperledger.
+- [x] Create Forntend to interact with hyperledger.
 - [ ] Upgrade hyperledger fabric version from 1.4 to 2.2.
