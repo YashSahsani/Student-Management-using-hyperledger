@@ -26,8 +26,7 @@
         <span class="icon-bar"></span>                        
       </button> -->
       <a class="navbar-brand" href="#myPage">
-        <img src="{{url_for('static', filename='logo.jpg')}}" style="
-    width: 150px;">
+        <img src="{{url_for('static', filename='logo.jpg')}}" style="width: 150px;">
       </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -67,47 +66,170 @@
                 <div class="col-sm-12 form-group">
                   <input class="form-control" id="semno" placeholder="1 or 2 .." type="text">
                 </div>
-                <div class="dropdown" align="center">
+                <div class="dropdown" align="center" id="Subjects">
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">No:of subjects to enter.
     <span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
+    <ul class="dropdown-menu" id="Subjects">
+      <li> <span id="sp1">1<br></span></li>
+      <li> <span id="sp2">2<br></span></li>
+      <li> <span id="sp3">3<br></span></li>
+      <li> <span id="sp4">4<br></span></li>
+      <li> <span id="sp5">5<br></span></li>
     </ul>
   </div>
 
   <style type="text/css">
   table {
-    margin-top: 20px;
-    margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  display: none;
 }
+
 
 td, th {
   text-align: left;
-  padding: 8px;
+  padding: 10px;
+  width: 60%;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
   </style>
-    <table align="center">
-    <tr>
+
+
+
+<table id="t1">
+  <tr>
     <th>Subject</th>
     <th>Marks</th>
     </tr>
-    <tr>
-    <td><input class="form-control" id="Subject"  type="text"></td>
-    <td><input class="form-control" id="Marks"  type="text"></td>
-    </tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
 </table>
 
+
+<table id="t2">
+  <tr>
+    <th>Subject</th>
+    <th>Marks</th>
+    </tr>
+  <tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+</table>
+
+
+<table id="t3">
+  <tr>
+    <th>Subject</th>
+    <th>Marks</th>
+    </tr>
+  <tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+</table>
+
+
+<table id="t4">
+  <tr>
+    <th>Subject</th>
+    <th>Marks</th>
+    </tr>
+  <tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+</table>
+
+
+<table id="t5">
+  <tr>
+    <th>Subject</th>
+    <th>Marks</th>
+    </tr>
+  <tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+  <tr>
+    <td><input class="form-control" id="Subject" type="text"></td>
+    <td><input class="form-control" id="Marks" type="text"></td>
+  </tr>
+</table>
+
+
+<script type="text/javascript">
+document.getElementById('sp1').addEventListener("click",function(){
+    showTable('t1');
+});
+
+document.getElementById('sp2').addEventListener("click",function(){   
+    showTable('t2');
+});
+document.getElementById('sp3').addEventListener("click",function(){
+     showTable('t3');
+});
+document.getElementById('sp4').addEventListener("click",function(){
+    showTable('t4');
+});
+document.getElementById('sp5').addEventListener("click",function(){
+  showTable('t5');
+});
+
+function showTable(table){
+    var tables =['t1','t2','t3','t4','t5'];    
+    for(var i=0;i<5;i++){
+        document.getElementById(tables[i]).style.display = "none";    
+    }
+    document.getElementById(table).style.display = "block";
+}
+</script>
+
+<br><br>
                 <div class="col-sm-12 form-group">
                   <button class="btn btn-primary" type="submit" style="width: 100%" onclick="sendJSON()">Submit</button>
                    <p class="result" style="color:green"></p> 
